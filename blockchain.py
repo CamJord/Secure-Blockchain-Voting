@@ -26,8 +26,7 @@ class Blockchain:
     def add_candidate(self, recipient_add):
         """
         Creates a new block and passes it to the chain
-        :param block: <Block> Block to add to the chain
-        :return: <bool> True if the block is added to the chain, False if not.
+        :param recipient_add:
         """
         self.__candidates.append(recipient_add)
 
@@ -51,7 +50,7 @@ class Blockchain:
     CAN PUT SIGNATURE IN HERE IF NEEDED
     """
 
-    def create_transaction(self, sender, recipient, amount = 1):
+    def create_transaction(self, sender, recipient, amount=1):
         """
         Creates a new transaction to go into the next block
         :param sender: <str> sender address
@@ -68,10 +67,6 @@ class Blockchain:
             return transaction, True
 
         return None, False
-
-    """
-    CAN REMOVE IF NO MINING, OR ALTERED FOR REWARD MINING
-    """
 
     def mine(self):
         """
@@ -207,4 +202,3 @@ class Blockchain:
     @property
     def full_chain(self):
         return self.__chain
-

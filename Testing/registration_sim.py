@@ -7,9 +7,10 @@ import sys
 import queue
 from voter_db import VoterDB
 from registrar import registrar
+from blockchain import Blockchain
 from Testing.threads import ThreadWithReturnValue
 
-ATTEMPTS = 100
+ATTEMPTS = 40
 VALID_VOTERS = 20
 
 
@@ -17,7 +18,11 @@ VALID_VOTERS = 20
 def sim_reg():
     # init
     sleep(1)
+    blockchain = Blockchain()
     database = VoterDB()
+    blockchain.add_candidate('recipient 1')
+    blockchain.add_candidate('recipient 2')
+    blockchain.add_candidate('recipient 3')
     # redirect stdout
     buf = ""
     # simulate 100 attempts to register/vote
@@ -34,7 +39,13 @@ def sim_reg():
         if not private_key:
             buf += "\nDon't Vote"
         else:
-            buf += "\nVote"
+            rec_num = random.randrange(1,5)
+            buf += "\nAttempting to vote for recipient " + str(rec_num)
+            blockchain.create_transaction(public_key, 'recipient '+str(rec_num), 1)
+            trans = blockchain.last_transaction
+            buf += "\nSender: " + trans.sender
+            buf += "\nRecipient: " + trans.sender
+
     sleep(1)
     return buf
 

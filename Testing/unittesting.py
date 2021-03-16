@@ -6,6 +6,7 @@ from voting_block import VBlock
 
 
 class TestTransaction(unittest.TestCase):
+
     def test_create_transaction_candidate(self):
         """
         Test creating a transaction
@@ -63,7 +64,7 @@ class TestBlockchain(unittest.TestCase):
         """
 
         blockchain = Blockchain()
-        block = blockchain.mine()
+        blockchain.mine()
 
         self.assertTrue(blockchain.validate_chain(blockchain.full_chain))
 

@@ -11,6 +11,7 @@ class Transaction:
         Creates a new transaction
         :param sender: <str> sender account
         :param recipient: <str> recipient account
+        :param candidate: <boolean> if candidate is recipient
         :param amount: <float> amount to be transferred
         """
         self.sender = sender
@@ -31,7 +32,7 @@ class Transaction:
 
         # Prevent vote cast to non-candidate
             # Prevent vote cast to non-candidate
-            if not self.candidate:
-                return False
+        if not self.candidate:
+            return False
 
-            return True
+        return True
