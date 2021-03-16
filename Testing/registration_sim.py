@@ -2,13 +2,19 @@
 A test of the voter registration system by simulating possible registrants.
 """
 from time import sleep
+import base64
 import random
 import sys
 import queue
+from cryptography.exceptions import InvalidSignature
+from cryptography.exceptions import UnsupportedAlgorithm
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
 from voter_db import VoterDB
 from registrar import registrar
 from blockchain import Blockchain
 from Testing.threads import ThreadWithReturnValue
+
 
 ATTEMPTS = 40
 VALID_VOTERS = 20
@@ -35,16 +41,51 @@ def sim_reg():
         buf += "\n" + msg
         buf += "\nPrivate Key (Usually only shown to voter): " + str(private_key)
         buf += "\nPublic Key: " + str(public_key)
-        # If registration is succesful
+        # If registration is successful
         if not private_key:
-            buf += "\nDon't Vote"
+            buf += "\nDon't Vote\n"
         else:
-            rec_num = random.randrange(1,5)
+            rec_num = random.randrange(1, 6)
+            plain_text = str(public_key) + ', recipient '+str(rec_num)+str(1)
+            try:
+                signature = private_key.sign(
+                    data=plain_text.encode('utf-8'),
+                    padding=padding.PSS(
+                        mgf=padding.MGF1(hashes.SHA256()),
+                        salt_length=padding.PSS.MAX_LENGTH
+                    ),
+                    algorithm=hashes.SHA256()
+
+                )
+                buf += "\nSignature: " + str(base64.urlsafe_b64encode(signature))
+
+                # VERIFY JUST CREATED SIGNATURE USING PUBLIC KEY
+                try:
+                    public_key.verify(
+                        signature=signature,
+                        data=plain_text.encode('utf-8'),
+                        padding=padding.PSS(
+                            mgf=padding.MGF1(hashes.SHA256()),
+                            salt_length=padding.PSS.MAX_LENGTH
+                        ),
+                        algorithm=hashes.SHA256()
+                    )
+                    is_signature_correct = True
+                except InvalidSignature:
+                    is_signature_correct = False
+
+                buf += "\nSignature is correct: " + str(is_signature_correct)
+            except UnsupportedAlgorithm:
+                buf += "\nSigning failed"
+
             buf += "\nAttempting to vote for recipient " + str(rec_num)
-            blockchain.create_transaction(public_key, 'recipient '+str(rec_num), 1)
-            trans = blockchain.last_transaction
-            buf += "\nSender: " + trans.sender
-            buf += "\nRecipient: " + trans.sender
+            _, successful = blockchain.create_transaction(public_key, 'recipient '+str(rec_num), signature, 1)
+            if successful:
+                trans = blockchain.last_transaction
+                buf += "\nSender: " + str(trans.sender)
+                buf += "\nRecipient: " + trans.recipient + "\n"
+            else:
+                buf += "\nInvalid candidate, vote failed\n"
 
     sleep(1)
     return buf

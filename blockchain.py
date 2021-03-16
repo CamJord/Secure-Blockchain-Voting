@@ -50,17 +50,17 @@ class Blockchain:
     CAN PUT SIGNATURE IN HERE IF NEEDED
     """
 
-    def create_transaction(self, sender, recipient, amount=1):
+    def create_transaction(self, sender, recipient, signature, amount=1):
         """
         Creates a new transaction to go into the next block
         :param sender: <str> sender address
         :param recipient: <str> recipient address
         :param amount: <float> amount
+        :param signature: <signature> encrypted with private key
         :return: <Transaction> generated transaction
         """
         candidate = recipient in self.candidate_list
-        transaction = Transaction(sender, recipient, candidate, amount)
-
+        transaction = Transaction(sender, recipient, candidate, signature, amount)
         if transaction.validate():
             self.__current_transactions.append(transaction)
 

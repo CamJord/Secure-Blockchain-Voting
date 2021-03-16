@@ -50,7 +50,7 @@ def registrar(voter_id, voter_db):
             # push a hash of voters ID and public key to voter database
             voter_db.add_entry(voter_id_hash, public_key)
             # send private and public key to voter
-            msg = f"Succesfully registered!"
+            msg = "Successfully registered!"
         else:
             msg = "Voter ID already registered."
     else:

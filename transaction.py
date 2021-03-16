@@ -6,18 +6,20 @@ from time import time
 
 class Transaction:
 
-    def __init__(self, sender, recipient, candidate, amount=1):
+    def __init__(self, sender, recipient, candidate, signature, amount=1):
         """
         Creates a new transaction
         :param sender: <str> sender account
         :param recipient: <str> recipient account
         :param candidate: <boolean> if candidate is recipient
+        :param signature: <signature> signature of transaction encrypted using private key
         :param amount: <float> amount to be transferred
         """
         self.sender = sender
         self.recipient = recipient
         self.timestamp = time()
         self.candidate = candidate
+        self.signature = signature
         self.amount = amount
 
     def validate(self):
