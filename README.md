@@ -16,7 +16,11 @@ All the files can now be run.
 Code included here is a proof of concept, as such some simulations and tests have
 been provided, but this project is by no means a standalone app. 
 To see a simluation of registration and other processes, run:
+
 > registration_sim.py
+
 which is located in the Testing folder. To see some simple unittest cases, run:
+
 > unittesting.py
+
 which is also located in the Testing folder.
