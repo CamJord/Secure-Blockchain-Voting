@@ -2,14 +2,12 @@
 
 ## Installation
 ----------------------------<br>
-To install the necessary modules, you can run one of the following:<br>
+To install the necessary modules run:<br>
     ```
-    pip install requirements.txt
+    make
     ```
-    <br> or <br>
-    ```
-    pip install cryptography
-    ```
+    <br>
+In the commandline of the root folder.
 <br>
 All the files can now be run.
 
@@ -20,14 +18,17 @@ been provided, but this project is by no means a standalone app.<br>
 <br>
 To see a simluation of registration and other processes, run:<br>
     ```
-registration_sim.py
+make run
     ```
-<br>which is located in the Testing folder. To see some simple unittest cases, run:<br>
-    ```
-unittesting.py
-    ```
-<br>which is also located in the Testing folder.
+<br>
 
+## Clean Files 
+----------------------------<br>
+To remove installations when done, run:<br>
+    ```
+make clean
+    ```
+<br>
 ## Example run
 ----------------------------<br>
     ```
