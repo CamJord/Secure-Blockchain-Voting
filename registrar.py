@@ -15,9 +15,11 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 def is_valid_voter(voter_id):
     return bool(random.getrandbits(1))
 
+
 # check database to see if voter has already be registered
 def has_registered(voter_id_hash, voter_db):
     return voter_db.has_id(voter_id_hash)
+
 
 # generate a pair of public and private keys for voter
 def generate_key_pair():
@@ -27,6 +29,7 @@ def generate_key_pair():
     )
     public_key = private_key.public_key()
     return private_key, public_key
+
 
 # hash a voters ID to put in database
 def hash_id(voter_id):
