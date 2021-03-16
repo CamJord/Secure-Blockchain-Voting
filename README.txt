@@ -1,4 +1,4 @@
-Installation
+Installation:
 To install the necessary modules run:
 $make
 In the commandline of the root folder.
