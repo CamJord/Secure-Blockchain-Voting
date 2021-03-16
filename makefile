@@ -12,7 +12,13 @@ $(VENV)/bin/activate: requirements.txt
 venv: $(VENV)/bin/activate
 
 run: venv
-	./$(VENV)/bin/python3 app.py
+	./$(VENV)/bin/python3 voter_db.py
+	./$(VENV)/bin/python3 registrar.py
+	./$(VENV)/bin/python3 voting_block.py
+	./$(VENV)/bin/python3 transaction.py
+	./$(VENV)/bin/python3 blockchain.py
+	./$(VENV)/bin/python3 Testing/unittesting.py
+	./$(VENV)/bin/python3 Testing/registration_sim.py
 
 clean:
 	rm -rf $(VENV)
