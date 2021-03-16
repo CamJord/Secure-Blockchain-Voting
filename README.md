@@ -1,5 +1,17 @@
 # Secure Blockchain Voting
 
+## Installation
+To install the necessary modules, you can run one of the following:<br>
+    ```
+    pip install requirements.txt
+    ```
+    <br> or <br>
+    ```
+    pip install cryptography
+    ```
+<br>
+All the files can now be run.
+
 **TODO:**<br>
 ---
 ---
