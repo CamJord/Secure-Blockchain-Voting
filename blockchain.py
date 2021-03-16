@@ -11,6 +11,7 @@ class Blockchain:
     def __init__(self):
         self.__current_transactions = []
         self.__chain = []
+        self.__candidates = []
         # Create genesis block
         self.create_genesis()
 
@@ -21,6 +22,14 @@ class Blockchain:
         """
         genesis_block = VBlock(0, self.__current_transactions, '00', 0, '00')
         self.__chain.append(genesis_block)
+
+    def add_candidate(self, recipient_add):
+        """
+        Creates a new block and passes it to the chain
+        :param block: <Block> Block to add to the chain
+        :return: <bool> True if the block is added to the chain, False if not.
+        """
+        self.__candidates.append(recipient_add)
 
     def add_block(self, block):
         """
@@ -42,7 +51,7 @@ class Blockchain:
     CAN PUT SIGNATURE IN HERE IF NEEDED
     """
 
-    def create_transaction(self, sender, recipient, amount):
+    def create_transaction(self, sender, recipient, amount = 1):
         """
         Creates a new transaction to go into the next block
         :param sender: <str> sender address
@@ -50,7 +59,8 @@ class Blockchain:
         :param amount: <float> amount
         :return: <Transaction> generated transaction
         """
-        transaction = Transaction(sender, recipient, amount)
+        candidate = recipient in self.candidate_list
+        transaction = Transaction(sender, recipient, candidate, amount)
 
         if transaction.validate():
             self.__current_transactions.append(transaction)
@@ -79,7 +89,7 @@ class Blockchain:
         ANOTHER UNSURE ADDITION, (last_block.signature, )WILL CHECK LATER
         """
         # Add the block to the new chain
-        block = VBlock(index, self.__current_transactions, nonce, previous_hash)
+        block = VBlock(index, self.__current_transactions, last_block.signature, nonce, previous_hash)
 
         if self.add_block(block):
             return block
@@ -189,6 +199,10 @@ class Blockchain:
     @property
     def pending_transactions(self):
         return self.__current_transactions
+
+    @property
+    def candidate_list(self):
+        return self.__candidates
 
     @property
     def full_chain(self):

@@ -6,7 +6,7 @@ from time import time
 
 class Transaction:
 
-    def __init__(self, sender, recipient, amount=1):
+    def __init__(self, sender, recipient, candidate, amount=1):
         """
         Creates a new transaction
         :param sender: <str> sender account
@@ -16,6 +16,7 @@ class Transaction:
         self.sender = sender
         self.recipient = recipient
         self.timestamp = time()
+        self.candidate = candidate
         self.amount = amount
 
     def validate(self):
@@ -27,12 +28,10 @@ class Transaction:
         # Prevent partial/negative transactions (whole vote/no stealing)
         if self.amount != 1:
             return False
-        """
-        IF WE WANT TO CHECK FOR VALID RECIPIENT
-        """
-        """
+
         # Prevent vote cast to non-candidate
-        if self.recipient != VALIDRECIPIENT
-            return False
-        """
-        return True
+            # Prevent vote cast to non-candidate
+            if not self.candidate:
+                return False
+
+            return True
