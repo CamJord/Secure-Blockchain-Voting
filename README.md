@@ -14,14 +14,14 @@ All the files can now be run.
 
 <br>**Running Code**<br>
 ----------------------------
-Code included here is a proof of concept, as such some simulations and tests have
-been provided, but this project is by no means a standalone app. 
-To see a simluation of registration and other processes, run:
+Code included here is a proof of concept, as such some simulations and tests have<br>
+been provided, but this project is by no means a standalone app.<br> 
+To see a simluation of registration and other processes, run:<br>
     ```
 registration_sim.py
     ```
-which is located in the Testing folder. To see some simple unittest cases, run:
+<br>which is located in the Testing folder. To see some simple unittest cases, run:<br>
     ```
 unittesting.py
     ```
-which is also located in the Testing folder.
+<br>which is also located in the Testing folder.
