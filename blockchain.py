@@ -46,10 +46,6 @@ class Blockchain:
 
         return False
 
-    """
-    CAN PUT SIGNATURE IN HERE IF NEEDED
-    """
-
     def create_transaction(self, sender, recipient, signature, amount=1):
         """
         Creates a new transaction to go into the next block
@@ -80,11 +76,12 @@ class Blockchain:
         # Let's start with the heavy duty, generating the proof of work
         nonce = self.generate_proof_of_work(last_block)
 
-        """
-        ANOTHER UNSURE ADDITION, (last_block.signature, )WILL CHECK LATER
-        """
+        if self.__current_transactions.__len__() == 0:
+            signature = "0"
+        else:
+            signature = self.last_transaction.signature
         # Add the block to the new chain
-        block = VBlock(index, self.__current_transactions, last_block.signature, nonce, previous_hash)
+        block = VBlock(index, self.__current_transactions, signature, nonce, previous_hash)
 
         if self.add_block(block):
             return block
@@ -136,13 +133,7 @@ class Blockchain:
 
         if current_block.hash != current_block.hash_block():
             return False
-        """
-        UNSURE IF THIS SHOULD BE HERE OR NOT
-        """
-        """
-        if previous_block.signature != current_block.signature:
-            return False    
-        """
+
         if not self.validate_proof_of_work(previous_block.nonce, previous_block.hash, current_block.nonce):
             return False
 

@@ -11,11 +11,20 @@ class VoterDB:
 
     # adds a hashed voter ID and public key to database
     def add_entry(self, voter_id, public_key):
+        """
+        adds entry to database
+        :param <String/Int> voter_id:
+        :param <Key> public_key:
+        """
         self.voter_ids.append(voter_id)
         self.public_keys.append(public_key)
 
     # checks to see if an hashed voter ID is already present in database
     def has_id(self, voter_id):
+        """
+        :param <String/Int> voter_id:
+        :return <boolean> is in database:
+        """
         for v_id in self.voter_ids:
             if v_id == voter_id:
                 return True

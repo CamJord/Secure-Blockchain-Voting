@@ -9,7 +9,7 @@ class TestTransaction(unittest.TestCase):
 
     def test_create_transaction_candidate(self):
         """
-        Test creating a transaction
+        Test creating a transaction with a valid candidate
         """
         blockchain = Blockchain()
         blockchain.add_candidate('recipient')
@@ -24,7 +24,7 @@ class TestTransaction(unittest.TestCase):
 
     def test_create_transaction_not_candidate(self):
         """
-        Test creating a transaction
+        Test creating a transaction with an invalid candidate
         """
         blockchain = Blockchain()
         transaction, valid = blockchain.create_transaction('sender', 'recipient', 1)

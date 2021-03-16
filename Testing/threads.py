@@ -1,7 +1,7 @@
 """
 A thread handler to use threading when handling user input.
 
-Threading for flavor from:
+Threading (for flavor) from:
     https://www.semicolonworld.com/question/43105/how-to-get-the-return-value-from-a-thread-in-python
 """
 from threading import Thread

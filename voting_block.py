@@ -17,7 +17,7 @@ class VBlock:
         """
         self.index = index
         self.timestamp = time()
-        self.transactions = transactions                # vote
+        self.transactions = transactions    # vote
         self.signature = signature
         self.nonce = nonce
         self.previous_hash = previous_hash
@@ -26,7 +26,7 @@ class VBlock:
     def hash_block(self):
         """
         Calculates the hash of the block
-        :return:
+        :return hashed block:
         """
         block_hash = hashlib.sha256()
         block_hash.update(

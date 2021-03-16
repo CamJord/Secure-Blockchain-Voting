@@ -22,6 +22,10 @@ VALID_VOTERS = 20
 
 # helper methods
 def sim_reg():
+    """
+    Multithreaded (for loading effect) simulation of creation of chain, creation of database, transactions,
+    mining, voting, registering candidates and more
+    """
     # init
     sleep(1)
     blockchain = Blockchain()
@@ -86,7 +90,7 @@ def sim_reg():
                 buf += "\nRecipient: " + trans.recipient
                 buf += "\nSignature in transaction: " + str(base64.urlsafe_b64encode(trans.signature)) + "\n"
             else:
-                buf += "\nInvalid candidate, vote failed\n"
+                buf += "\nInvalid candidate (only candidates 1 - 3 are registered), vote failed\n"
 
             buf += "Pending transactions: " + str(blockchain.pending_transactions)
             buf += "\nmining\n"
@@ -97,7 +101,10 @@ def sim_reg():
     return buf
 
 def animate(process):
-
+    """
+    adds loading animation while processing a task
+    :param <process> long task:
+    """
     while process.is_alive():
         chars = "⢿⣻⣽⣾⣷⣯⣟⡿"
         for char in chars:
