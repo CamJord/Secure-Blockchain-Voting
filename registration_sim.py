@@ -13,7 +13,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from voter_db import VoterDB
 from registrar import registrar
 from blockchain import Blockchain
-from Testing.threads import ThreadWithReturnValue
+from threads import ThreadWithReturnValue
 
 
 ATTEMPTS = 40
@@ -114,14 +114,21 @@ def animate(process):
     sys.stdout.write('\rFinished!     ')
 
 
-print("""
-This is a simulation of multiple users attempting to register and vote.\n\
--------------------------------------------------------------------------------\n\
-Please comment out the Sim() function as designated in Main for actual use.\n\n\
-As the valid voters are randomized, entering the same ID more than once may\n\
-result in a user being \"valid\" one time and not another. Use in conjunction with\n\
-an actual verification system to avoid this issue.
-""")
+print("This is a simulation of multiple users attempting to register and vote.")
+sleep(.2)
+      
+print("-------------------------------------------------------------------------------")
+sleep(.2)
+print();
+sleep(.2)
+print("Please comment out the Sim() function as designated in Main for actual use.")
+sleep(.2)
+print("As the valid voters are randomized, entering the same ID more than once may")
+sleep(.2)
+print("result in a user being \"valid\" one time and not another. Use in conjunction with")
+sleep(.2)
+print("an actual verification system to avoid this issue.")
+sleep(.2)
 print("\n")
 # Wait for Enter key to be pressed
 input("Press Enter to continue...")
@@ -136,5 +143,10 @@ animate(t)
 print("\n")
 # Wait for Enter key to be pressed
 input("Press Enter to see results...")
-print(t.join())
+big_str = t.join()
+# helps visualize scope of print out when line by line, feel free
+# to just print big_str instead of this loop 
+for line in big_str.splitlines():
+    print(line)
+    sleep(.03)
 

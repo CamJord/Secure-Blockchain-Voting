@@ -1,35 +1,33 @@
 # Secure Blockchain Voting
 
 ## Installation
-----------------------------<br>
-To install the necessary modules, you can run one of the following:<br>
+To install the necessary modules run:<br>
+    $```
+    make
     ```
-    pip install requirements.txt
-    ```
-    <br> or <br>
-    ```
-    pip install cryptography
-    ```
+    <br>
+In the commandline of the root folder.
 <br>
 All the files can now be run.
 
 ## Running Code
-----------------------------<br>
 Code included here is a proof of concept, as such some simulations and tests have<br>
 been provided, but this project is by no means a standalone app.<br> 
 <br>
 To see a simluation of registration and other processes, run:<br>
+    $```
+make run
     ```
-registration_sim.py
-    ```
-<br>which is located in the Testing folder. To see some simple unittest cases, run:<br>
-    ```
-unittesting.py
-    ```
-<br>which is also located in the Testing folder.
+<br>
 
-## Example run
-----------------------------<br>
+## Clean Files 
+To remove installations when done, run:<br>
+    $```
+make clean
     ```
-    pip install requirements.txt
+<br>
+## Example run
+An example run can be found in the included file: 
+    ```
+Example.ipynb
     ```
