@@ -16,6 +16,7 @@ All the files can now be run.
 ----------------------------
 Code included here is a proof of concept, as such some simulations and tests have<br>
 been provided, but this project is by no means a standalone app.<br> 
+<br>
 To see a simluation of registration and other processes, run:<br>
     ```
 registration_sim.py
