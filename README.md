@@ -28,7 +28,11 @@ make clean
 <br>
 ## Example run
 An example run can be found in the included files: 
+<br>
     ```
 Example.ipynb
+```
+<br>
+```
 Example.pdf
     ```
