@@ -39,8 +39,8 @@ def sim_reg():
                "\n--------------------------------------------------------------"
         private_key, public_key, msg = registrar(v_id, database)
         buf += "\n" + msg
-        buf += "\nPrivate Key (Usually only shown to voter): " + str(private_key)
-        buf += "\nPublic Key: " + str(public_key)
+        buf += "\nPrivate Key Object (Usually only shown to voter): " + str(private_key)
+        buf += "\nPublic Key Object: " + str(public_key)
         # If registration is successful
         if not private_key:
             buf += "\nDon't Vote\n"
@@ -83,9 +83,15 @@ def sim_reg():
             if successful:
                 trans = blockchain.last_transaction
                 buf += "\nSender: " + str(trans.sender)
-                buf += "\nRecipient: " + trans.recipient + "\n"
+                buf += "\nRecipient: " + trans.recipient
+                buf += "\nSignature in transaction: " + str(base64.urlsafe_b64encode(trans.signature)) + "\n"
             else:
                 buf += "\nInvalid candidate, vote failed\n"
+
+            buf += "Pending transactions: " + str(blockchain.pending_transactions)
+            buf += "\nmining\n"
+            blockchain.mine()
+            buf += "Pending transactions: " + str(blockchain.pending_transactions) + "\n"
 
     sleep(1)
     return buf
