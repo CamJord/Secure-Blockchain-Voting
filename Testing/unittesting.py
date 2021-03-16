@@ -1,6 +1,9 @@
-import unittest, copy
+import copy
+import unittest
+
 from blockchain import Blockchain
 from voting_block import VBlock
+
 
 class TestTransaction(unittest.TestCase):
     def test_create_transaction_candidate(self):
@@ -40,15 +43,17 @@ class TestTransaction(unittest.TestCase):
         self.assertIsNone(transaction)
         self.assertFalse(valid)
 
+
 class TestBlock(unittest.TestCase):
     def test_block_hash(self):
         """
         Test hashing blocks
         """
-        block = VBlock(1, [],'0', 0, '0')
+        block = VBlock(1, [], '0', 0, '0')
 
         # If we recalculate the hash on the block we should get the same result as we have stored
         self.assertEqual(block.hash, block.hash_block())
+
 
 class TestBlockchain(unittest.TestCase):
 
@@ -66,8 +71,6 @@ class TestBlockchain(unittest.TestCase):
         """
         Test validating a chain with a tempered block nonce
         """
-        miner_address = 'miner_address'
-
         blockchain = Blockchain()
         last_block = blockchain.mine()
 
