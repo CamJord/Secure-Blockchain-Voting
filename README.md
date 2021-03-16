@@ -3,7 +3,7 @@
 ## Installation
 ----------------------------<br>
 To install the necessary modules run:<br>
-    ```
+    $```
     make
     ```
     <br>
@@ -17,7 +17,7 @@ Code included here is a proof of concept, as such some simulations and tests hav
 been provided, but this project is by no means a standalone app.<br> 
 <br>
 To see a simluation of registration and other processes, run:<br>
-    ```
+    $```
 make run
     ```
 <br>
@@ -25,12 +25,12 @@ make run
 ## Clean Files 
 ----------------------------<br>
 To remove installations when done, run:<br>
-    ```
+    $```
 make clean
     ```
 <br>
 ## Example run
 ----------------------------<br>
-    ```
+    $```
     pip install requirements.txt
     ```
